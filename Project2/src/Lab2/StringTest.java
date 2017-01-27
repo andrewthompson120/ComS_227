@@ -12,5 +12,9 @@ public class StringTest {
 		theChar = message.charAt(1);
 		System.out.println(theChar);
 		
+		System.out.println(message.toUpperCase());
+		System.out.println(message.substring(0,5));
+		System.out.println(message.replace("o","*"));
+		
 	}
 }
