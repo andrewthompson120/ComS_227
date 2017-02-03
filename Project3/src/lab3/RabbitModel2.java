@@ -1,13 +1,13 @@
 package lab3;
 
-public class RabbitModel {
+public class RabbitModel2 {
 	
 	private int rabbitPopulation; // Initial rabbit population
 	private int rabbitsBorn; // Rabbit birth rate per year
 	private int rabbitsDead; // Rabbits death rate per year
 	private int year; // Year of calculation
 	
-	public RabbitModel() {
+	public RabbitModel2() {
 		rabbitPopulation = 2;
 		rabbitsBorn = 1;
 		rabbitsDead = 0;

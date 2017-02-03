@@ -7,7 +7,7 @@ public class CheckpointOne {
 		// Question 1
 		int i;
 		int Answer = 0;		
-		for (i = 0; i < 1000000; i++) {			
+		for (i = 0; i < 1000001; i++) {			
 			Answer = i % 7;			
 		}
 		System.out.println("Checkpoint: 1, Question 1 Answer: " + Answer);
