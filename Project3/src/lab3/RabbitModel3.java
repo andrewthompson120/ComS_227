@@ -3,13 +3,13 @@ package lab3;
 public class RabbitModel3 {
 	
 	private int rabbitPopulation; // Initial rabbit population
-	private int rabbitsBorn; // Rabbit birth rate per year
-	private int rabbitsDead; // Rabbits death rate per year
+	//private int rabbitsBorn; // Rabbit birth rate per year
+	//private int rabbitsDead; // Rabbits death rate per year
 	
 	public RabbitModel3() {
-		rabbitPopulation = 2;
-		rabbitsBorn = 1;
-		rabbitsDead = 0;
+		rabbitPopulation = 500;
+		//rabbitsBorn = 0;
+		//rabbitsDead = 0;
 	}
 	/*
 	 * Constructs the model and validates the variables
@@ -24,7 +24,8 @@ public class RabbitModel3 {
 	 */
 	 
 	public void simulateYear() {
-		rabbitPopulation = rabbitPopulation - rabbitsDead + rabbitsBorn;
+		//rabbitPopulation = rabbitPopulation - rabbitsDead + rabbitsBorn;
+		rabbitPopulation = rabbitPopulation / 2;
 	}
 	/*
 	 * Simulates the passage of a year. 
@@ -32,9 +33,9 @@ public class RabbitModel3 {
 	 */
 	
 	public void reset() {
-		rabbitPopulation = 2;
-		rabbitsBorn = 1;
-		rabbitsDead = 0;
+		rabbitPopulation = 500;
+		//rabbitsBorn = 0;
+		//rabbitsDead = 0;
 	}
 	/*
 	 * Resets the state of the model to the initial conditions

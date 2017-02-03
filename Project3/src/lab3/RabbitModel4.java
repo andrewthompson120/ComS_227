@@ -1,14 +1,15 @@
 package lab3;
-
+import java.util.Random;
 public class RabbitModel4 {
 	
 	private int rabbitPopulation; // Initial rabbit population
 	private int rabbitsBorn; // Rabbit birth rate per year
 	private int rabbitsDead; // Rabbits death rate per year
+	Random rand = new Random( );
 	
 	public RabbitModel4() {
-		rabbitPopulation = 2;
-		rabbitsBorn = 1;
+		rabbitPopulation = 0;
+		rabbitsBorn = rand.nextInt(11);
 		rabbitsDead = 0;
 	}
 	/*
@@ -25,6 +26,7 @@ public class RabbitModel4 {
 	 
 	public void simulateYear() {
 		rabbitPopulation = rabbitPopulation - rabbitsDead + rabbitsBorn;
+		rabbitsBorn = rand.nextInt(11);
 	}
 	/*
 	 * Simulates the passage of a year. 
@@ -32,8 +34,8 @@ public class RabbitModel4 {
 	 */
 	
 	public void reset() {
-		rabbitPopulation = 2;
-		rabbitsBorn = 1;
+		rabbitPopulation = 0;
+		rabbitsBorn = rand.nextInt(11);
 		rabbitsDead = 0;
 	}
 	/*
