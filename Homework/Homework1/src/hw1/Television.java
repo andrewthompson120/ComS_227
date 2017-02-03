@@ -8,11 +8,9 @@ public class Television {
 	private int tempPrevChannel;
 	
 	private double currentVolume;
-	private double maxVolume;
-	private double minVolume;
 	
 	
-	public static final double VOLUME_INCREMENT	= 0.07;
+	public static final double VOLUME_INCREMENT	= 0.070;
 	/*
 	 *  The volume is incremented or decremented by the value of the constant
 	 */
@@ -29,14 +27,18 @@ public class Television {
 	}
 
 	
-	public int getChannel() {
-		return currentChannel;
+	public String display() {
+		return "Channel " + currentChannel + " Volume " + currentVolume*100 + "%";
 	}
 	/*
-	 * Returns the current channel.
+	 * Returns a string representing the current channel and volume in the form "Channel x Volume y%",
+	 * where x is the current channel and y is the volume, multiplied by 100 and rounded to the nearest integer. 
+	 * For example, if the channel is 8 and the volume is .765, this method returns the exact string "Channel 8 Volume 77%".
 	 */
-	
+
+
 	public void channelDown() {
+		previousChannel = currentChannel;
 		if (currentChannel > 0) {
 			currentChannel = currentChannel - 1;
 		}
@@ -49,6 +51,7 @@ public class Television {
 	 */
 	
 	public void channelUp() {
+		previousChannel = currentChannel;
 		if(currentChannel < maxChannel){
 			currentChannel = currentChannel + 1;
 		}
@@ -73,7 +76,17 @@ public class Television {
 	
 	public void setChannel(int channelNumber) {
 		previousChannel = currentChannel;
-		currentChannel = channelNumber;
+		if(channelNumber > 0) {
+			if(channelNumber > maxChannel) {
+				currentChannel = maxChannel;
+			}
+			else {
+				currentChannel = channelNumber;
+			}
+		}
+		else {
+			currentChannel = 0;
+		}
 	}
 	/*
 	 * Sets the channel to the given channel number. 
@@ -82,12 +95,15 @@ public class Television {
 	 */
 	
 	public void resetChannelMax(int givenMax) { 
-		maxChannel = givenMax - 1;
-		if (maxChannel < currentChannel) {
-			currentChannel = maxChannel;
+		maxChannel = 0;
+		if(givenMax > 0) {
+			maxChannel = givenMax -1;
 		}
-		if (previousChannel > maxChannel) {
-			previousChannel = maxChannel;
+		else {
+			maxChannel = 0;
+		}
+		if(currentChannel > maxChannel) {
+			currentChannel = maxChannel;
 		}
 	}
 	/*
@@ -96,7 +112,44 @@ public class Television {
 	 * Likewise, if the previous channel is greater than givenMax - 1, it is automatically adjusted to be givenMax - 1.
 	 */
 	
+	public int getChannel() {
+		return currentChannel;
+	}
+	/*
+	 * Returns the current channel.
+	 */
 	
+	
+	public double getVolume() {
+		return currentVolume;
+	}
+	/*
+	 * Returns the current volume.
+	 */
+	
+	public void volumeDown() {
+		if (currentVolume > -0.01 + VOLUME_INCREMENT) {
+			currentVolume = currentVolume - VOLUME_INCREMENT + .000000000000001;
+		}
+		else {
+			currentVolume = 0;
+		}
+	}
+	/*
+	 * Lowers the volume by VOLUME_INCREMENT, but not below 0.0
+	 */
+	
+	public void volumeUp() {
+		if (currentVolume < 1.01 - VOLUME_INCREMENT) {
+			currentVolume = currentVolume + VOLUME_INCREMENT ;
+		}
+		else {
+			currentVolume = 1.0;
+		}
+	}
+	/*
+	 * Raises the volume by VOLUME_INCREMENT, but not above 1.0
+	 */
 	
 	
 }
