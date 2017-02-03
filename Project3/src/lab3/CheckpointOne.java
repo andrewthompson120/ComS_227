@@ -27,8 +27,21 @@ public class CheckpointOne {
 		System.out.println(questionThreeInt); //Should print 42
 		questionThreeString = "Hello There!";
 		questionThreeInt = 0;
-		questionThreeInt = Integer.parseInt(questionThreeString);
+		//questionThreeInt = Integer.parseInt(questionThreeString); // Commented out so that It will not keep giving errors
 		System.out.println(questionThreeInt); 
+		
+		
+		// Question 4
+		System.out.println("Question 4: ");
+		System.out.println(Integer.MAX_VALUE); 
+		System.out.println(Integer.MIN_VALUE);
+		System.out.println(Integer.MAX_VALUE + 1); 
+		System.out.println(Integer.MAX_VALUE + 2);
+		System.out.println(Integer.MAX_VALUE + Integer.MIN_VALUE); 
+		
+		
+		// Question 5
+		
 		
 		
 	}
