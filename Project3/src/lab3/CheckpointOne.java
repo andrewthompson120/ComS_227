@@ -1,5 +1,5 @@
 package lab3;
-
+import java.util.Random;
 public class CheckpointOne {
 	
 	public static void main(String[] argc) {
@@ -34,16 +34,19 @@ public class CheckpointOne {
 		// Question 4
 		System.out.println("Question 4: ");
 		System.out.println(Integer.MAX_VALUE); 
-		System.out.println(Integer.MIN_VALUE);
+		System.out.println(Integer.MIN_VALUE); 
 		System.out.println(Integer.MAX_VALUE + 1); 
 		System.out.println(Integer.MAX_VALUE + 2);
 		System.out.println(Integer.MAX_VALUE + Integer.MIN_VALUE); 
-		
+
 		
 		// Question 5
-		
-		
-		
-	}
+		System.out.println("Question 5: ");
+		Random rand = new Random( );
+		System.out.println(rand.nextInt((137)));
+		System.out.println(rand.nextInt((137)));
+		System.out.println(rand.nextInt((6)));
+		System.out.println(rand.nextInt((6)));
 	
+	}	
 }
