@@ -7,10 +7,10 @@ public class Television {
 	private int previousChannel;
 	private int tempPrevChannel;
 	
-	private double currentVolume;
+	private int currentVolume;
 	
 	
-	public static final double VOLUME_INCREMENT	= 0.070;
+	public static final int VOLUME_INCREMENT = 7;
 	/*
 	 *  The volume is incremented or decremented by the value of the constant
 	 */
@@ -23,12 +23,12 @@ public class Television {
 	public Television(int givenChannelMax) {
 		currentChannel = 0;
 		maxChannel = givenChannelMax - 1;
-		currentVolume = 0.5;		
+		currentVolume = 50;		
 	}
 
 	
 	public String display() {
-		return "Channel " + currentChannel + " Volume " + currentVolume*100 + "%";
+		return "Channel " + currentChannel + " Volume " + currentVolume + "%";
 	}
 	/*
 	 * Returns a string representing the current channel and volume in the form "Channel x Volume y%",
@@ -105,6 +105,9 @@ public class Television {
 		if(currentChannel > maxChannel) {
 			currentChannel = maxChannel;
 		}
+		if(previousChannel > maxChannel) {
+			previousChannel = maxChannel;
+		}
 	}
 	/*
 	 * Resets this Television so that its available channels are now from 0 through givenMax - 1. 
@@ -121,15 +124,15 @@ public class Television {
 	
 	
 	public double getVolume() {
-		return currentVolume;
+		return currentVolume *0.01;
 	}
 	/*
 	 * Returns the current volume.
 	 */
 	
 	public void volumeDown() {
-		if (currentVolume > -0.01 + VOLUME_INCREMENT) {
-			currentVolume = currentVolume - VOLUME_INCREMENT + .000000000000001;
+		if (currentVolume > -1 + VOLUME_INCREMENT) {
+			currentVolume = currentVolume - VOLUME_INCREMENT;
 		}
 		else {
 			currentVolume = 0;
@@ -140,11 +143,11 @@ public class Television {
 	 */
 	
 	public void volumeUp() {
-		if (currentVolume < 1.01 - VOLUME_INCREMENT) {
+		if (currentVolume < 101 - VOLUME_INCREMENT) {
 			currentVolume = currentVolume + VOLUME_INCREMENT ;
 		}
 		else {
-			currentVolume = 1.0;
+			currentVolume = 100;
 		}
 	}
 	/*
