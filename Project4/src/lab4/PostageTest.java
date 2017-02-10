@@ -3,7 +3,7 @@ package lab4;
 /**
  * Edit this import to test a different version
  */
-import example.PostageUtil;;
+import postage1.PostageUtil;;
 
 public class PostageTest {
   /**
@@ -11,7 +11,7 @@ public class PostageTest {
    * @param args
    */
   public static void main(String[] args) {
-	  
+	   
     System.out.println("0.5 ounces: " + PostageUtil.computePostage(0.5));
     System.out.println("Expected .47");
     System.out.println("1.0 ounces: " + PostageUtil.computePostage(1.0));
