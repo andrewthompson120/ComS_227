@@ -32,7 +32,7 @@ public class Donuts {
     int singles = donuts % 12;
     int freeCoffees = dozens * 2;
     coffees = coffees - freeCoffees;
-    if (coffees < 0) {
+    if (coffees < 0) { // this ensures that coffees will never be negative if more free coffee than ordered
     	coffees = 0;
     }
     double donutCost = dozens * 8.00 + singles * .75;
