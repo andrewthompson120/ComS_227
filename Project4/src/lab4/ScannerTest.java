@@ -1,10 +1,9 @@
 package lab4;
 import java.util.Scanner;
 
-public class ScannerTest
-{
-  public static void main(String[] args)
-  {
+public class ScannerTest {
+  public static void main(String[] args) {
+	  
     String theInput = "Huey Louie Dewey";
     
     // construct a scanner to read from the string
@@ -19,5 +18,6 @@ public class ScannerTest
     System.out.println(first);
     System.out.println(second);
     System.out.println(third);
+  
   }
 }

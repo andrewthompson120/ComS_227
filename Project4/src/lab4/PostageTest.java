@@ -5,14 +5,13 @@ package lab4;
  */
 import example.PostageUtil;;
 
-public class PostageTest
-{
+public class PostageTest {
   /**
    * Tests the postage calculation utility.
    * @param args
    */
-  public static void main(String[] args)
-  {
+  public static void main(String[] args) {
+	  
     System.out.println("0.5 ounces: " + PostageUtil.computePostage(0.5));
     System.out.println("Expected .47");
     System.out.println("1.0 ounces: " + PostageUtil.computePostage(1.0));
@@ -29,6 +28,6 @@ public class PostageTest
     System.out.println("Expected .1.57");
     System.out.println("10 ounces: " + PostageUtil.computePostage(10));
     System.out.println("Expected 2.83");
+ 
   }
-
 }
