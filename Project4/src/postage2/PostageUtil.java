@@ -1,4 +1,4 @@
-package postage1;
+package postage2;
 
 public class PostageUtil {
       /**
@@ -17,12 +17,14 @@ public class PostageUtil {
 		/*
 		 * Sets the cost to .47 if weight is 1oz or under
 		 */
+		
 		else if ((weight > 1) && (weight <= 3.5)) {
 			cost = 0.47 + Math.ceil(weight - 1) * 0.21;
 		}
 		/*
 		 * Sets the cost based on package weight between 1 < w <= 3.5
 		 */
+		
 		else {
 			cost = 0.94 + Math.ceil(weight -1) * 0.21;
 		}
