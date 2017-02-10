@@ -20,6 +20,7 @@ public class PiggyBank {
    */
   public PiggyBank(int maxCoins) {
     this.maxCoins = maxCoins;
+    busted = false;
   }
   
   /**
@@ -35,7 +36,7 @@ public class PiggyBank {
   }
   
   /**
-   * Returns the number of coins in this <code>PiggyBank</code>.
+   * Returns the number of coins in this PiggyBank.
    * @return
    *   number of coins
    */
@@ -58,7 +59,7 @@ public class PiggyBank {
    *   true if smashed, false otherwise
    */
   public boolean isSmashed() {
-    if (busted = true) {
+    if (busted == true) {
       return true;
     }
     else {
