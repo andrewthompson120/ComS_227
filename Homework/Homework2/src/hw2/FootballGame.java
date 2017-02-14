@@ -42,21 +42,35 @@ public class FootballGame {
   //My private 
   private int teamAScore; // Holds score for team 0
   private int teamBScore; // Holds score for team 1
-  private boolean offenceTeam; // False: team 0; True: team 1;
+  private int offenseTeam; // False: team 0; True: team 1;
   private int downNumber; // Holds the number for the down
   
   
-  
+  /**
+   * Constructs a new game.
+   */
   public FootballGame() {
 	  teamAScore = 0;
 	  teamBScore = 0;
-	  offenceTeam = false;
+	  offenseTeam = 0;
 	  downNumber = 1;
 	  
   }
   
+  /**
+   * Returns the current down.
+   * @return downNumber
+   */
   public int getDown() {
 	   return downNumber;
+  }
+  
+  /**
+   * Returns the index for the team currently playing offense.
+   * @return offenseTeam 
+   */
+  public int getOffense() {
+	  return offenseTeam;
   }
   
 
