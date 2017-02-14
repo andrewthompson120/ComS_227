@@ -7,7 +7,8 @@ package example;
  * passing, blocking, pass defense, and kicking.
  */
 public class Team {
-  /**
+  
+	/**
    * Running skill points of this team.
    */
   private final int run;
@@ -43,8 +44,7 @@ public class Team {
    * @param givenName
    *   name for this team
    */
-  public Team(String givenName)
-  {
+  public Team(String givenName) {
     this(givenName, 20, 20, 20, 20, 20);
   }
   

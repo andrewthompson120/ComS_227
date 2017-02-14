@@ -4,9 +4,10 @@ package hw2;
  * This class encapsulates the logic and state for a simplified
  * game of American football.  
  * 
- * @author YOUR NAME HERE
+ * @author Andrew Thompson
  */
 public class FootballGame {
+	
   /**
    * Number of points awarded for a touchdown.
    */  
@@ -38,7 +39,25 @@ public class FootballGame {
    */
   public static final int YARDS_FOR_FIRST_DOWN = 10;
   
-  // TODO - everything else :)
+  //My private 
+  private int teamAScore; // Holds score for team 0
+  private int teamBScore; // Holds score for team 1
+  private boolean offenceTeam; // False: team 0; True: team 1;
+  private int downNumber; // Holds the number for the down
+  
+  
+  
+  public FootballGame() {
+	  teamAScore = 0;
+	  teamBScore = 0;
+	  offenceTeam = false;
+	  downNumber = 1;
+	  
+  }
+  
+  public int getDown() {
+	   return downNumber;
+  }
   
 
 }
