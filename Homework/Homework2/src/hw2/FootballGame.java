@@ -39,7 +39,7 @@ public class FootballGame {
    */
   public static final int YARDS_FOR_FIRST_DOWN = 10;
   
-  //My private 
+  //My private variables
   private int teamAScore; // Holds score for team 0
   private int teamBScore; // Holds score for team 1
   private int offenseTeam; // False: team 0; True: team 1;
@@ -104,6 +104,113 @@ public class FootballGame {
    */
   public int getYardsToGoalLine() {
 	  return yardsToGoalLine;
+  }
+  
+  
+  /**
+   * Records the result of an extra point attempt, 
+   * adding EXTRA_POINTS points if the attempt was successful.
+   * @param success
+   */
+  public void extraPoint(boolean success) {
+	  if(success) {
+		  
+		  if (offenseTeam == 0) {
+			  teamAScore = teamAScore + EXTRA_POINTS;
+		  }
+		  else {
+			  teamBScore = teamBScore + EXTRA_POINTS;
+		  }
+		  
+	  }
+  }
+  
+  /**
+   * Records the result of a field goal attempt, 
+   * adding FIELD_GOAL_POINTS points if the field goal was successful.
+   * @param success
+   */
+  public void fieldGoal(boolean success) {
+	  if(success) {
+		  
+		  if(offenseTeam == 0) {
+			  teamAScore = teamAScore + FIELD_GOAL_POINTS;
+		  }
+		  else {
+			  teamBScore = teamBScore + FIELD_GOAL_POINTS;
+		  }
+		  
+	  }
+  }
+  
+  /**
+   * Records the result of a punt.
+   * @param yards
+   */
+  public void punt(int yards) {
+	  if(offenseTeam == 0) {
+		  
+		  offenseTeam = 1;
+		  downNumber = 1;
+		  yardsToFirstDown = YARDS_FOR_FIRST_DOWN;
+		  
+		  if((yardsToGoalLine + yards) > FIELD_LENGTH) {
+			  yardsToGoalLine = FIELD_LENGTH;
+		  }
+		  else {
+			  yardsToGoalLine = yardsToGoalLine + yards;
+		  }
+		  
+	  }
+  }
+  
+  /**
+   * Records the result of advancing the ball the given number of yards, 
+   * possibly resulting in a first down, a touchdown, or a turnover.
+   * @param yards
+   */
+  public void runOrPass(int yards) {
+	  // Made touchdown 
+	  if ((yardsToGoalLine - yards) <= 0) {		 
+		  if(offenseTeam == 0) {
+			  teamAScore = teamAScore + TOUCHDOWN_POINTS;
+		  }
+		  else {
+			  teamBScore = teamBScore + TOUCHDOWN_POINTS;
+		  }
+		  downNumber = 1;		  
+	  }
+	  
+	  // Made first down
+	  else if((yardsToFirstDown - yards) <= 0) { 
+		  yardsToFirstDown = YARDS_FOR_FIRST_DOWN;
+		  yardsToGoalLine = yardsToGoalLine - yards;
+		  downNumber = 1;
+	  }
+	  
+	  // Failed 4th Down
+	  else if(((downNumber + 1) > 4) && (yardsToFirstDown - yards > 0)) {
+		  yardsToFirstDown = YARDS_FOR_FIRST_DOWN;
+		  downNumber = 1;
+		  yardsToGoalLine = yardsToGoalLine - yards;
+		  yardsToGoalLine = FIELD_LENGTH - yardsToGoalLine;
+		  
+		  if (offenseTeam == 0) {
+			  offenseTeam = 1;
+		  }
+		  else {
+			  offenseTeam = 0;
+		  }
+		  
+	  }
+	  
+	  //Normal run/pass
+	  else {
+		  downNumber = downNumber + 1;
+		  yardsToGoalLine = yardsToGoalLine - yards;
+		  yardsToFirstDown = yardsToFirstDown - yards;
+	  }
+	  
   }
   
 
