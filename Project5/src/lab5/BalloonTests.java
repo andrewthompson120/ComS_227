@@ -1,7 +1,7 @@
 package lab5;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import balloon3.Balloon;
+import balloon.Balloon;
 
 public class BalloonTests {
 	
@@ -65,7 +65,9 @@ public class BalloonTests {
 		Balloon b = new Balloon(5);
 		b.blow(4);
 		b.pop();
+		b.blow(3);
 		b.pop();
+		b.blow(5);
 		assertEquals(true, b.isPopped());
 	}
 	
@@ -95,11 +97,11 @@ public class BalloonTests {
 	}
 	
 	@Test
-	public void testInitPop() {
-		Balloon b = new Balloon(5);
-		b.pop();
+	public void testTwoInflates() {
+		Balloon b = new Balloon(10);
+		b.blow(2);
 		b.blow(3);
-		assertEquals(3, b.getRadius());
+		assertEquals(5, b.getRadius());
 	}
 	
 	
