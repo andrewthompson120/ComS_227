@@ -3,11 +3,17 @@ package lab6;
 import java.util.Scanner;
 
 public class InitialsMachine {
+	
 	public static void main(String[] argc) {
 		
-		String nameIn = "dfsdf asdfas tTs Tdsv";
+		String nameIn = "";
 		String initReturn = "";
 		int firstVowel = 0;
+		
+		System.out.println("Enter name then hit enter:");
+		Scanner in = new Scanner(System.in);
+		nameIn = in.nextLine();
+		in.close();
 		System.out.println("Name entered: " + nameIn);
 	
 		initReturn = getInitials(nameIn);

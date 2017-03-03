@@ -5,8 +5,8 @@ public class Lab6Example {
 	
   public static void main(String[] args) {
 	  
-    //System.out.println(longestRun("aabbbccd"));
-    //System.out.println("Expected 3");
+    System.out.println(longestRun("aabbbccd"));
+    System.out.println("Expected 3");
     System.out.println(longestRun("aaa"));
     System.out.println("Expected 3");
     System.out.println(longestRun("aabbbb"));

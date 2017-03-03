@@ -22,8 +22,8 @@ public class SimpleLoops {
     int result1 = findFirstP("stop");
     System.out.println(result1);
 
-    //int result = findFirstP("xxxyyyzzz");
-    //System.out.println(result);
+    int result3 = findFirstP("xxxyyyzzz");
+    System.out.println(result3);
     
   }
 
