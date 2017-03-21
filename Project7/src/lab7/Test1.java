@@ -1,6 +1,7 @@
 package lab7;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class Test1 {
 	
@@ -39,12 +40,43 @@ public class Test1 {
 		
 	}
 	
+	public static int[] randomExperiment(int max, int iters) {
+		
+		int givenMax = max;
+		int givenTimes = iters;
+		int[] randomArray;
+		int index = 0;
+		int arrayInt = 0;
+		
+		randomArray = new int[givenTimes];
+		
+		
+		for (index = 0; index < givenTimes; index++) {
+			Random num = new Random();
+			for(int s = 0; s < index +1; s++){
+				arrayInt = num.nextInt(givenMax - 1);
+			}
+			randomArray[index] = arrayInt;
+		}	
+		return randomArray;		
+	}
+	
 	public static void main(String[] argc) {
+		
 		int[] testPositiveNumbers = {-1,0,1,5,-2,-34};
 		String returnString = "";
 		
 		returnString = Arrays.toString(getPositiveNumbers(testPositiveNumbers));
 		System.out.println(returnString);
+		
+		
+		int randMax = 10;
+		int randIters = 10;
+		String randString = "";
+	
+		randString = Arrays.toString(randomExperiment(randMax, randIters));
+		System.out.println(randString);
+		
 	}
 	
 }
