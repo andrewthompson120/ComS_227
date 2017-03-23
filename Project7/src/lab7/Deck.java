@@ -1,4 +1,5 @@
 package lab7;
+//import java.lang.reflect.Array;
 import java.util.Random;
 
 import lab7.Card.Suit;
@@ -7,8 +8,7 @@ import lab7.Card.Suit;
  * Class representing a standard 52-card deck of playing
  * cards from which cards can be selected at random.
  */
-public class Deck
-{
+public class Deck {
   /**
    * The cards comprising this deck.
    */
@@ -22,8 +22,7 @@ public class Deck
   /**
    * Constructs a new deck with a default random number generator.
    */
-  public Deck()
-  {
+  public Deck() {
     rand = new Random();
     init();
   }
@@ -31,8 +30,7 @@ public class Deck
   /**
    * Constructs a new deck with the given random number generator.
    */
-  public Deck(Random givenGenerator)
-  {
+  public Deck(Random givenGenerator) {
     rand = givenGenerator;
 	init();
   }
@@ -41,21 +39,33 @@ public class Deck
    * Returns a new array containing k elements selected
    * at random from this deck.
    */
-  public Card[] select(int k)
-  {
-    // TODO
-    return null;
+  public Card[] select(int k) {
+	  int cardsWanted = k;
+	  int cardsLeft = 52;
+	  Card[] hand = new Card[k];
+	  
+	  for (int i = 0; i < cardsWanted; i++) {
+		  int c = rand.nextInt(cardsLeft);
+		  hand[i] = cards[c];
+		  for(int x = 0; x < i; x++) {
+			  if(hand[i].equals(hand[x])) {
+				  i--;
+				  break;
+			  }
+		  }
+	  }
+	  
+	  return hand;
   }
   
   /**
    * Initializes a new deck of 52 cards.
    */
-  private void init()
-  {
+  private void init() {
+	  
     cards = new Card[52];
     int index = 0;
-    for (int rank = 1; rank <= 13; ++rank)
-    {
+    for (int rank = 1; rank <= 13; ++rank) {
       cards[index] = new Card(rank, Suit.CLUBS);
       index += 1;
       cards[index] = new Card(rank, Suit.DIAMONDS);

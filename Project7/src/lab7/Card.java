@@ -5,13 +5,11 @@ package lab7;
  * Class representing a playing card with possible rank 1 through 13 and four
  * possible suits.
  */
-public class Card
-{
-  /**
+public class Card {
+	/**
    * Constants for the four suits.
    */
-  public enum Suit
-  {
+  public enum Suit {
     CLUBS, DIAMONDS, HEARTS, SPADES
   };
 
@@ -41,8 +39,7 @@ public class Card
    * @param givenSuit
    *          suit for this card
    */
-  public Card(int givenRank, Suit givenSuit)
-  {
+  public Card(int givenRank, Suit givenSuit) {
     rank = givenRank;
     suit = givenSuit;
   }
@@ -52,8 +49,7 @@ public class Card
    * 
    * @return rank for this card
    */
-  public int getRank()
-  {
+  public int getRank() {
     return rank;
   }
 
@@ -62,16 +58,14 @@ public class Card
    * 
    * @return suit for this card
    */
-  public Suit getSuit()
-  {
+  public Suit getSuit() {
     return suit;
   }
 
   /**
    * Returns a String representation of this card.
    */
-  public String toString()
-  {
+  public String toString() {
     return NAMES[rank] + " of " + suit;
   }
 
@@ -82,14 +76,11 @@ public class Card
    *          array of Card objects
    * @return a String representation of the given array
    */
-  public static String toString(Card[] arr)
-  {
+  public static String toString(Card[] arr) {
     StringBuilder sb = new StringBuilder();
     sb.append("[");
-    for (int i = 0; i < arr.length; ++i)
-    {
-      if (i > 0)
-      {
+    for (int i = 0; i < arr.length; ++i) {
+      if (i > 0) {
         // every element after first one has comma before it
         sb.append(", ");
       }
