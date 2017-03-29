@@ -48,6 +48,7 @@ public class GamePanel extends JPanel {
 	 */
 	private long startTime;
   
+	
 	/**
 	 * Constructs a GamePanel with the given game associated ScorePanel.
 	 * @param game 

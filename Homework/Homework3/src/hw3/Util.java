@@ -27,18 +27,55 @@ public class Util {
 	 *   array of Flow objects determined by the descriptor 
 	 */
 	public static Flow[] createFlowsFromStringArray(String[] descriptor) {
-		Flow[] returnArray = new Flow[Array.getLength(descriptor)];
+		int descRows = Array.getLength(descriptor); // Gets height
+		int descCols = descriptor[0].length(); // Gets width
+		int currentCellNumber = 0; 
+		ArrayList<Cell> cells = new ArrayList<Cell>();
+		Flow[] gameFlows = new Flow[descRows];
 		
-		for(int x = 0; x < Array.getLength(descriptor); x++) { // Row
-			for(int i = 0; i < descriptor[x].length(); i++) { // Column
-				// creates a cell with the letter for everything except - (aka blank space)
-				if(descriptor[x].charAt(i) != '-') {
-					returnArray[x] = new Flow(new Cell(x,i,descriptor[x].charAt(i)),new Cell(x,i,descriptor[x].charAt(i)));
+		
+		for(int i=0; i < descRows; i++) {
+			//Checks if row is valid. Return null if not
+			if(descriptor[i].length() != descCols) { 
+				return null;
+			}
+			// Searches string for end points in the row
+			for(int j=0; j < descCols; j++) {
+				// Checks for any end points
+				if(descriptor[i].charAt(j) == 'R' || descriptor[i].charAt(j) == 'G' || descriptor[i].charAt(j) == 'B' ||
+						descriptor[i].charAt(j) == 'C' || descriptor[i].charAt(j) == 'Y' || descriptor[i].charAt(j) == 'M' || 
+						descriptor[i].charAt(j) == 'O' || descriptor[i].charAt(j) == 'P' || descriptor[i].charAt(j) == 'S' || 
+						descriptor[i].charAt(j) == 'V' || descriptor[i].charAt(j) == 'F') {
+					
+					Cell cell = new Cell(i,j,descriptor[i].charAt(j));
+					cells.add(cell); // Stores each endpoint in a cell;
 				}
+				// If anything other than a '-' left returns null
+				else if(descriptor[i].charAt(j) != '-') {
+					return null;
+				}				
+			}					  
+		}
+		//Checks if there are an even # of end pts
+		if(cells.size() %2 != 0) {
+			return null;
+		}
+		// Constructs the flow cells
+		for(int w = 1; w < cells.size(); w++) {
+			if(cells.get(w).colorMatches(cells.get(0).getColor())) {
+				gameFlows[currentCellNumber] = new Flow(cells.get(0),cells.get(w));
+				cells.remove(w);
+				cells.remove(0);
+				w = 0;
+				currentCellNumber++;
 			}
 		}
+		// Returns null if it doesnt equal rows
+		if(currentCellNumber != descRows) {
+			return null;
+		}
+		return gameFlows;
 		
-		return returnArray;
 	}
  
 	/**

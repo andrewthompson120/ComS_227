@@ -1,5 +1,6 @@
 package hw3;
 
+import java.awt.Color;
 import java.lang.reflect.Array;
 
 import api.Cell;
@@ -11,10 +12,28 @@ import hw3.Util;
  * Game state for a Flow Free game.
  */
 public class FlowGame {
-	private int gameWidth; // Holds the 
-	private int gameHeight;
-	private Flow[] gameFlows;
-	private String[] gameDescriptor;
+	
+	private int gameWidth = 0; // Holds the # of columns
+	private int gameHeight = 0; // Holds the # of rows
+	private Cell[] currentCell = null; // Current cell	
+	private Flow[] gameFlows = null; // Current flow[] of the game
+	private String[] gameDescriptor = null;
+	
+	
+	/**
+	 * Turns the given flow into a string array
+	 * @param input, givenRows, givenCols
+	 * @return returnString
+	 * 		returns a string converted from the Flow
+	 */
+	private String[] getGameDescriptor(Flow[] input, int givenRows, int givenCols) {
+		int rows;
+		int columns;
+		String[] returnString;
+		
+		//for()
+		
+	}
 	
 	/**
 	 * Constructs a FlowGame to use the given array of Flows and
@@ -33,7 +52,6 @@ public class FlowGame {
 		gameHeight = givenHeight;
 		gameFlows = givenFlows;
 		
-		 
 	 }
   
 	 /**
@@ -45,10 +63,10 @@ public class FlowGame {
 		  int descRows = Array.getLength(descriptor);
 		  int descCols = descriptor[0].length();
 		  
-		  FlowGame game;
-		  
-		  Flow[] flows = new Flow[descRows];
-		  flows = createFlowsFromStringArray(descriptor);
+		  if(Util.createFlowsFromStringArray(descriptor) != null) {  
+			  for
+		  }
+			  
 	  }
 	  
 	  /**
@@ -96,8 +114,18 @@ public class FlowGame {
 	   *   occupied cells in this game
 	   */
 	  public int getCount() {
-		  // TODO
-		  return 0;
+		  int occupiedCount = 0;
+		  
+		  for(int i = 0; i < gameHeight; i++) {
+			  for(int j = 0; j < gameWidth; j++) {
+				  if(gameDescriptor[i].charAt(j) == 'R' || gameDescriptor[i].charAt(j) == 'G' || gameDescriptor[i].charAt(j) == 'B' || gameDescriptor[i].charAt(j) == 'C' || 
+						  gameDescriptor[i].charAt(j) == 'Y' || gameDescriptor[i].charAt(j) == 'M' || gameDescriptor[i].charAt(j) == 'O' || gameDescriptor[i].charAt(j) == 'P' || 
+						  gameDescriptor[i].charAt(j) == 'S' || gameDescriptor[i].charAt(j) == 'V' || gameDescriptor[i].charAt(j) == 'F') {
+					  occupiedCount++;
+				  }
+			  }
+		  }
+		  return occupiedCount;
 	  }
 	  
 	  /**
