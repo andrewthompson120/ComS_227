@@ -108,7 +108,7 @@ public class Flow {
 	 */
 	@Override
 	public String toString() {
-		// TODO
+		
 		
 		return "{" + endpoints[0] + ", " + endpoints[1] + "} " + cells.toString();    
 	}

@@ -1,9 +1,11 @@
 package hw3;
 
 import java.io.FileNotFoundException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import api.Flow;
+import api.Cell;
 
 /**
  * Utility class with methods for creating Flows from string descriptors
@@ -25,8 +27,18 @@ public class Util {
 	 *   array of Flow objects determined by the descriptor 
 	 */
 	public static Flow[] createFlowsFromStringArray(String[] descriptor) {
-		// TODO
-		return null;
+		Flow[] returnArray = new Flow[Array.getLength(descriptor)];
+		
+		for(int x = 0; x < Array.getLength(descriptor); x++) { // Row
+			for(int i = 0; i < descriptor[x].length(); i++) { // Column
+				// creates a cell with the letter for everything except - (aka blank space)
+				if(descriptor[x].charAt(i) != '-') {
+					returnArray[x] = new Flow(new Cell(x,i,descriptor[x].charAt(i)),new Cell(x,i,descriptor[x].charAt(i)));
+				}
+			}
+		}
+		
+		return returnArray;
 	}
  
 	/**

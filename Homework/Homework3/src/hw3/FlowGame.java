@@ -1,12 +1,21 @@
 package hw3;
 
+import java.lang.reflect.Array;
+
 import api.Cell;
 import api.Flow;
+import hw3.Util;
 
 /**
+ * @author Andrew Thompson
  * Game state for a Flow Free game.
  */
 public class FlowGame {
+	private int gameWidth; // Holds the 
+	private int gameHeight;
+	private Flow[] gameFlows;
+	private String[] gameDescriptor;
+	
 	/**
 	 * Constructs a FlowGame to use the given array of Flows and
 	 * the given width and height.  Client is responsible for ensuring that all
@@ -20,7 +29,10 @@ public class FlowGame {
 	 *   height to use for the game
 	 */
 	 public FlowGame(Flow[] givenFlows, int givenWidth, int givenHeight) {
-		 // TODO
+		gameWidth = givenWidth;
+		gameHeight = givenHeight;
+		gameFlows = givenFlows;
+		
 		 
 	 }
   
@@ -30,7 +42,13 @@ public class FlowGame {
 	  *   array of strings representing initial endpoint positions
 	  */
 	  public FlowGame(String[] descriptor) {
-		  // TODO
+		  int descRows = Array.getLength(descriptor);
+		  int descCols = descriptor[0].length();
+		  
+		  FlowGame game;
+		  
+		  Flow[] flows = new Flow[descRows];
+		  flows = createFlowsFromStringArray(descriptor);
 	  }
 	  
 	  /**
@@ -38,9 +56,8 @@ public class FlowGame {
 	   * @return
 	   *  width for this game
 	   */
-	  public int getWidth() {
-		  // TODO
-		  return 0;
+	  public int getWidth() {		  
+		  return gameWidth;
 	  }
 	  
 	  /**
@@ -48,9 +65,8 @@ public class FlowGame {
 	   * @return
 	   *   height for this game
 	   */
-	  public int getHeight() {
-		  // TODO
-		  return 0;
+	  public int getHeight() {		  
+		  return gameHeight;
 	  }
 	  
 	  /**
@@ -70,8 +86,8 @@ public class FlowGame {
 	   *   array of flows for this game
 	   */
 	  public Flow[] getAllFlows() {
-		  // TODO
-		  return null;
+		  
+		  return gameFlows;
 	  }
 	  
 	  /**
@@ -159,7 +175,10 @@ public class FlowGame {
 	   *   true if any cell in this game has the given row and column, false otherwise
 	   */
 	  public boolean isOccupied(int row, int col) {
-		  // TODO
+		  int givenRow = row;
+		  int givenCol = col;
+		  
+		  
 		  return false;
 	  }
 
