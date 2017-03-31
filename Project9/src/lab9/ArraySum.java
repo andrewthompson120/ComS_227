@@ -5,11 +5,12 @@ public class ArraySum {
 	 * Try it out.
 	 */
 	public static void main(String[] args) {
-		int startPt = 0;
-		int endPt = 0; 
+		int n = 3;
 		int[] test = {3, 4, 5, 1, 2, 3, 2}; // sum should be 20
 		int result = arraySum(test);
 		System.out.println(result);
+		int result2 = arraySumRec1(n); // return 5
+		System.out.println(result2);
 	}
 
 	/**
@@ -30,8 +31,20 @@ public class ArraySum {
 			int mid = (start + end) / 2;
 			int leftSum = arraySumRec(arr, start, mid);
 			int rightSum = arraySumRec(arr, mid + 1, end);
-			return leftSum + rightSum;
+			return Math.max(leftSum, rightSum);
 		}
 	}
+	
+	private static int arraySumRec1(int n) {
+		int sum = 0;
+		for(int j = 0; j < n; j++) {
+			sum = sum + ((j+1)*(j+1));
+		}
+		return sum;
+	}
+	
+	
+	
+	
 	
 }
