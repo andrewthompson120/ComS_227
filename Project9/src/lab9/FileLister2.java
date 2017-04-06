@@ -2,6 +2,7 @@ package lab9;
 import java.io.File;
 
 public class FileLister2 {
+	public static int fileCount = 0;
   
 	public static void main(String[] args) {
 		// Choose the directory you want to list.
@@ -20,7 +21,25 @@ public class FileLister2 {
 	 */
 	public static void listAllFiles(File f) {
 		// start off at level 0
-		listAllFilesRec(f, 0);
+		//listAllFilesRec(f, 0);
+		for(int j=0;j<f.list().length;j++) {
+			if (!f.isDirectory()) {
+				// Base case: f is a file, so just print its name
+				//System.out.println(f.getName());
+				fileCount++;
+			}
+			else {
+				// General case: f is a directory, so recursively list the 
+				// files and subdirectories it contains
+				//System.out.println("+ " + f.getName());
+				File files = f;
+				for (int i = 0; i < files.list().length; ++i) {
+					listAllFiles(files);
+				}
+			}
+	}
+		
+		System.out.println(fileCount);
 	}
   
 	/**
@@ -29,16 +48,17 @@ public class FileLister2 {
 	 */
 	private static void listAllFilesRec(File f, int level) {
 		// First, indent two spaces for each level
-		System.out.print(makeSpaces(2 * level));
+		//System.out.print(makeSpaces(2 * level));
     
 		if (!f.isDirectory()) {
 			// Base case: f is a file, so just print its name
-			System.out.println(f.getName());
+			//System.out.println(f.getName());
+			fileCount++;
 		}
 		else {
 			// General case: f is a directory, so recursively list the 
 			// files and subdirectories it contains
-			System.out.println("+ " + f.getName());
+			//System.out.println("+ " + f.getName());
 			File[] files = f.listFiles();
 			for (int i = 0; i < files.length; ++i) {
 				listAllFilesRec(files[i], level + 1);

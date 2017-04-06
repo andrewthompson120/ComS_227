@@ -3,6 +3,7 @@ package lab9;
 import java.io.File;
 
 public class FileLister {
+	private static int fileCount = 0;
 	
 	public static void main(String[] args) {
 		// Choose the directory you want to list.
@@ -12,6 +13,7 @@ public class FileLister {
 		File rootDirectory = new File(".");
 
 		listAllFiles(rootDirectory);
+		System.out.println(fileCount);
 	}
   
 	/**
@@ -22,13 +24,14 @@ public class FileLister {
 	public static void listAllFiles(File f) {
 		if (!f.isDirectory()) {
 			// Base case: f is a file, so just print its name
-			System.out.println(f.getName());
+			//System.out.println(f.getName());
+			fileCount++;
 		}
 		else {
 			// Recursive case: f is a directory, so go through the 
 			// files and directories it contains, and recursively call
 			// this method on each one
-			System.out.println("+ " + f.getName());
+			//System.out.println("+ " + f.getName());
 			File[] files = f.listFiles();
 			for (int i = 0; i < files.length; ++i) {
 				listAllFiles(files[i]);

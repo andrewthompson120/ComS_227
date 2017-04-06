@@ -43,7 +43,7 @@ public class Thing {
   
 	/**
 	 * Adds a thing to this thing's contents.  This thing must
-	 * be a box for this to work.
+	 * be a box for this to work. 
 	 * @param t
 	 */
 	public void addThing(Thing t) {

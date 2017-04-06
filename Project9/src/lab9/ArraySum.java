@@ -5,11 +5,12 @@ public class ArraySum {
 	 * Try it out.
 	 */
 	public static void main(String[] args) {
-		int n = 3;
+		int pyramidEnd = 4;
+		
 		int[] test = {3, 4, 5, 1, 2, 3, 2}; // sum should be 20
 		int result = arraySum(test);
 		System.out.println(result);
-		int result2 = arraySumRec1(n); // return 5
+		int result2 = arraySumRec1(pyramidEnd); // return 5
 		System.out.println(result2);
 	}
 
@@ -35,12 +36,15 @@ public class ArraySum {
 		}
 	}
 	
-	private static int arraySumRec1(int n) {
-		int sum = 0;
-		for(int j = 0; j < n; j++) {
-			sum = sum + ((j+1)*(j+1));
+	private static int arraySumRec1(int end) {
+		
+		if(1 < end) {
+			int lastSum = (end*end) + arraySumRec1(end-1);
+			return lastSum;
 		}
-		return sum;
+		else {
+			return 1;
+		}
 	}
 	
 	
