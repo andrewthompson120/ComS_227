@@ -24,7 +24,34 @@ public class ConwayTransform implements ITransform {
 
 	@Override
 	public int apply(int[][] elements) {
-		// TODO `
+		// Center is always at elements[1][1]
+		int S = 0; // sum of neighbors
+		int centerValue = elements[1][1];
+		
+		// Find sum of neighbors
+		for(int i = 0; i < 3; i++) {
+			for(int j = 0; j < 3; j++) {
+				if(i == 1 && j == 1) {
+					j++;
+				}
+				S = elements[i][j];
+			}
+		}
+		
+		// Determining new center value
+		if(centerValue == 0 && S == 3) {
+			return 1;
+		}
+		else if(centerValue == 1 && (S == 2 || S == 3)) {
+			return 1;
+		}
+		else if(S < 2) { 
+			return 0;
+		}
+		else if(S > 3) {
+			return 0;
+		}
+		
 		return 0;
 	}
 

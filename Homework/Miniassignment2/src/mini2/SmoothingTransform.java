@@ -21,8 +21,19 @@ public class SmoothingTransform implements ITransform {
   
 	@Override
 	public int apply(int[][] elements) {
-		// TODO
-		return 0;
+		int returnTot = 0;
+		int runTotal = 0;
+		int size = 2 * radius + 1;
+		int numElements = size * size;	
+		
+		for(int row = 0; row < size; row++) {
+			for (int col = 0; col < size; col++) {
+				runTotal = runTotal + elements[row][col];
+			}
+		}
+		
+		returnTot = Math.round(runTotal/numElements);	
+		return returnTot;
 	}
 
 	@Override
