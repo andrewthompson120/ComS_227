@@ -111,33 +111,34 @@ public class GridUtil {
 		}
 		
 		// Cells out of index brought down to into the index
-		if(inputWrap) {
+		if(!inputWrap) {
 			 for(int rows = -inputRadius; rows <= inputRadius; rows++) {
-				 for (int cols = -inputRadius; cols < inputRadius; cols++) {
+				 for (int cols = -inputRadius; cols <= inputRadius; cols++) {
 					 // Actual row and col in the original array
 					 int actRow = inputRow + rows; 
 					 int actCol = inputCol + cols;
 
 					 // Checks if actRow < 0
 					 if(actRow < 0) {
-						 actRow = actRow + maxRows;
+						 returnArray[currRow][currCol] = 0;
 					 }					 
 					 // Checks if actRow >= maxRows
 					 else if(actRow >= maxRows) {
-						 actRow = actRow - maxRows;
+						 returnArray[currRow][currCol] = 0;
 					 }
 					 // Checks if actCol < 0
 					 else if(actCol < 0) {
-						 actCol = actCol + maxCols;
+						 returnArray[currRow][currCol] = 0;
 					 }
 					 // Checks if actCol >= 0			 
 					 else if(actCol >= maxCols) {
-						 actCol = actCol - maxCols;
+						 returnArray[currRow][currCol] = 0;
 					 }
 					 
 					 // Sets new array
-					 returnArray[currRow][currCol] = arr[actRow][actCol];
-					 
+					 else{
+						 returnArray[currRow][currCol] = arr[actRow][actCol];
+					 }
 					 currCol++;
 				 }
 				 currCol = 0;
@@ -152,27 +153,26 @@ public class GridUtil {
 					 int actRow = inputRow + rows;
 					 int actCol = inputCol + cols;
 					 
-					 
+// - If ONE is in and other outside of array
 					 // Checks if actRow < 0 				 
 					 if(actRow < 0) {
-						 returnArray[currRow][currCol] = 0;
+						 actRow = actRow + maxRows;
 					 }
 					 // Checks if actRow >= maxRows				 
-					 else if(actRow >= maxRows) {
-						 returnArray[currRow][currCol] = 0;
+					 if(actRow >= maxRows){
+						 actRow = actRow - maxRows;
 					 }
 					 // Checks if actCol < 0					 
-					 else if(actRow < 0){
-						 returnArray[currRow][currCol] = 0;
+					 if(actCol < 0){
+						 actCol = actCol + maxCols;
 					 }
 					 // Checks if actCol >= maxCols
-					 else if(actCol >= maxCols){
-						 returnArray[currRow][currCol] = 0;
+					 if(actCol >= maxCols){
+						 actCol = actCol - maxCols;
 					 }
-					 // If both are in the array
-					 else {
-						 returnArray[currRow][currCol] = arr[actRow][actCol];
-					 }
+// - If NONE are outside of array
+					 // Only if both are inside the orig array
+					 returnArray[currRow][currCol] = arr[actRow][actCol];
 					 
 					 currCol++;
 				 }

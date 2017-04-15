@@ -25,34 +25,34 @@ public class ConwayTransform implements ITransform {
 	@Override
 	public int apply(int[][] elements) {
 		// Center is always at elements[1][1]
-		int S = 0; // sum of neighbors
+		int sum = 0; // sum of neighbors
+		int rows = elements.length;
+		int cols = elements[0].length;
+		int size = 3;
 		int centerValue = elements[1][1];
 		
+		if (rows != size || cols != size) {
+			throw new IllegalArgumentException("Not a 3x3 array");
+		}
+		
 		// Find sum of neighbors
-		for(int i = 0; i < 3; i++) {
-			for(int j = 0; j < 3; j++) {
-				if(i == 1 && j == 1) {
-					j++;
-				}
-				S = elements[i][j];
+		for(int i = 0; i < rows; i++) {
+			for(int j = 0; j < cols; j++) {
+				// if it isn't the center
+				sum = sum + elements[i][j];
 			}
 		}
-		
+		sum = sum - elements[1][1];
+		//System.out.println(sum);
 		// Determining new center value
-		if(centerValue == 0 && S == 3) {
-			return 1;
+		if(sum < 2 || sum > 3) {
+			centerValue = 0;
 		}
-		else if(centerValue == 1 && (S == 2 || S == 3)) {
-			return 1;
-		}
-		else if(S < 2) { 
-			return 0;
-		}
-		else if(S > 3) {
-			return 0;
+		else if ((centerValue == 0) && (sum == 3)) {
+			centerValue = 1;
 		}
 		
-		return 0;
+		return centerValue;
 	}
 
 	@Override
