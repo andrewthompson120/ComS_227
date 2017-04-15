@@ -98,127 +98,86 @@ public class GridUtil {
 		int width = 2 * inputRadius + 1;
 		// Array to be returned
 		int[][] returnArray = new int[height][width];
-		// Input array variables
+		// Max index for row and col
 		int maxRows = arr.length;
 		int maxCols = arr[0].length;
-		int currentRow = inputRow - radius;
-		int currentCol = inputCol - radius;
-		int hasNull = -1; // for debugging
+		// Current row/col of the new array
+		int currRow = 0;
+		int currCol = 0;
+				
+		//Throws illegal arg warning if the size is bigger than the inputArray
+		if(height > maxRows || width > maxCols) {
+			throw new IllegalArgumentException("Size is bigger than given array");
+		}
 		
-		System.out.println(arr.length);
 		// Cells out of index brought down to into the index
 		if(inputWrap) {
-			 for(int rows = 0; rows < arr.length; rows++) {
-				 for (int cols = 0; cols < width; cols++) {
+			 for(int rows = -inputRadius; rows <= inputRadius; rows++) {
+				 for (int cols = -inputRadius; cols < inputRadius; cols++) {
+					 // Actual row and col in the original array
+					 int actRow = inputRow + rows; 
+					 int actCol = inputCol + cols;
 
-					 // - If one is out of arr and one is in
-					 // Check if row below 0 and col in arr
-					 if(currentRow < 0 && currentCol >= 0 && currentCol < maxCols) {
-						returnArray[rows][cols] = arr[0][currentCol];
-						hasNull = 1;
+					 // Checks if actRow < 0
+					 if(actRow < 0) {
+						 actRow = actRow + maxRows;
+					 }					 
+					 // Checks if actRow >= maxRows
+					 else if(actRow >= maxRows) {
+						 actRow = actRow - maxRows;
 					 }
-					 // Check if row above max index and col are in arr
-					 else if(currentRow >= maxRows && currentCol >= 0 && currentCol < maxCols) {
-						 returnArray[rows][cols] = arr[maxRows-1][cols];
-						 hasNull = 1;
+					 // Checks if actCol < 0
+					 else if(actCol < 0) {
+						 actCol = actCol + maxCols;
 					 }
-					 // Check if col is below array (null) and row in arr
-					 else if(currentCol < 0 && currentRow >= 0 && currentRow < maxRows) {
-						 returnArray[rows][cols] = arr[currentRow][0];
-						 hasNull = 1;
-					 }
-					 // check if col is above array (returns null) and row in arr
-					 else if(currentCol >= maxCols && currentRow >= 0 && currentRow < maxRows) {
-						 returnArray[rows][cols] = arr[currentRow][maxCols-1];
-						 hasNull = 1;
+					 // Checks if actCol >= 0			 
+					 else if(actCol >= maxCols) {
+						 actCol = actCol - maxCols;
 					 }
 					 
-					 // - If both are outside
-					 // Check if both row and col are below array (returns null)
-					 else if(currentRow < 0 && currentCol < 0) {
-						 returnArray[rows][cols] = arr[0][0];
-						 hasNull = 1;
-					 }
-					 // Check if both row and col are above array
-					 else if(currentRow >= maxRows && currentCol >= maxCols) {
-						 returnArray[rows][cols] = arr[maxRows-1][maxCols-1];
-						 hasNull = 1;
-					 }
-					 // Check if row below 0 and cols above max
-					 else if(currentRow < 0 && currentCol >= maxCols) {
-						 returnArray[rows][cols] = arr[0][maxCols-1];
-						 hasNull = 1;
-					 }
-					 // Check if row above max and cols below 0
-					 else if(currentRow >= maxRows && currentCol < 0) {
-						 returnArray[rows][cols] = arr[maxRows-1][0];
-						 hasNull = 1;
-					 }
+					 // Sets new array
+					 returnArray[currRow][currCol] = arr[actRow][actCol];
 					 
-					 // - If both are inside
-					 // Check if row inside and col inside
-					 else if ( (currentRow > -1 && currentRow < maxRows) && (currentCol > -1 && currentCol < maxCols) ) {
-						 returnArray[rows][cols] = arr[currentRow][currentCol];
-						 hasNull = 0;
-					 }
-					 
-					 
-					 // DEBUG STEP:
-					 // This is a debug that will fire if nothing is placed in the array
-					 if(hasNull == -1) { 
-						 System.out.println("ERROR IN getSubArray-Wrap:TRUE");
-					 }
-					 hasNull = -1; // reset hasNull
-		
-					 currentCol++;
+					 currCol++;
 				 }
-				 currentRow++;
+				 currCol = 0;
+				 currRow++;
 			 }
 		}
 		// Cells out of range filled with 0;
 		else{
-			 for(int rows = 0; rows < height; rows++) {
-				 for (int cols = 0; cols < width; cols++) {
-					 
-					 // Check if row below 0 (returns null)
-					 if(currentRow < 0) {
-						returnArray[rows][cols] = 0;
-						hasNull = 1;
-					 }
-					 // Check if row above max index (return null)
-					 else if(currentRow >= maxRows) {
-						 returnArray[rows][cols] = 0;
-						 hasNull = 1;
-					 }
-					 
-					 // Check if col is in array
-					 else if(currentCol < 0) {
-						 returnArray[rows][cols] = 0;
-						 hasNull = 1;
-					 }
-					 else if (currentCol >= maxCols) {
-						 returnArray[rows][cols] = 0;
-						 hasNull = 1;
-					 }
-					 
-					 // - If both are inside
-					 // Check if row inside and col inside
-					 else if ( (currentRow > -1 && currentRow < maxRows) && (currentCol > -1 && currentCol < maxCols) ) {
-						 returnArray[rows][cols] = arr[currentRow][currentCol];
-						 hasNull = 0;
-					 }
+			for(int rows = -inputRadius; rows <= inputRadius; rows++) {
+				 for (int cols = -inputRadius; cols <= inputRadius; cols++) {
+					 // Actual row and col from original array
+					 int actRow = inputRow + rows;
+					 int actCol = inputCol + cols;
 					 
 					 
-					 // DEBUG STEP:
-					 // This is a debug that will fire if nothing is placed in the array
-					 if(hasNull == -1) { 
-						 System.out.println("ERROR IN getSubArray-Wrap:TRUE");
+					 // Checks if actRow < 0 				 
+					 if(actRow < 0) {
+						 returnArray[currRow][currCol] = 0;
 					 }
-					 hasNull = -1; // reset hasNull
+					 // Checks if actRow >= maxRows				 
+					 else if(actRow >= maxRows) {
+						 returnArray[currRow][currCol] = 0;
+					 }
+					 // Checks if actCol < 0					 
+					 else if(actRow < 0){
+						 returnArray[currRow][currCol] = 0;
+					 }
+					 // Checks if actCol >= maxCols
+					 else if(actCol >= maxCols){
+						 returnArray[currRow][currCol] = 0;
+					 }
+					 // If both are in the array
+					 else {
+						 returnArray[currRow][currCol] = arr[actRow][actCol];
+					 }
 					 
-					 currentCol++;
+					 currCol++;
 				 }
-				 currentRow++;
+				 currCol = 0;
+				 currRow++;
 			 }
 		}
 		
