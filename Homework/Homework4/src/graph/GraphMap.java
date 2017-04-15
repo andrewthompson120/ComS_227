@@ -52,7 +52,7 @@ public abstract class GraphMap implements Updatable, Iterable<Cell> {
 	private ColorGenerator gen;
 	
 	/**
-	 * True iff food should be randomly generated (for a traditional snake game)
+	 * True if food should be randomly generated (for a traditional snake game)
 	 */
 	private boolean createFood = true;
 	

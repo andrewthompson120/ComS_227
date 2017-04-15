@@ -9,7 +9,9 @@ import java.awt.Color;
  */
 public interface ColorGenerator {
 	/**
-	 * Makes a new color. For style, subclasses should create multiple colors.
+	 * Makes a new color. For style, 
+	 * subclasses should create multiple colors.
+	 * 
 	 * @return A Color
 	 */
 	public Color createColor();
